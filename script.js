@@ -109,7 +109,7 @@ function initializeScrollReveals() {
 
   document
     .querySelectorAll(
-      ".sec h2, .sec .lead, .services li, .slogan, .frame, .gallery figure, blockquote, details, .proof > *, .qwrap form, .foot p"
+      ".sec h2, .sec .lead, .services li, .slogan, .frame, .gallery figure, blockquote, details, .proof > *, .qwrap form"
     )
     .forEach(function (element) {
       const siblingIndex = Array.prototype.indexOf.call(
@@ -183,7 +183,7 @@ function sendQuoteRequest(form, status, endpoint, formData) {
       status.textContent = "Thanks! We will contact you soon.";
     })
     .catch(function () {
-      status.textContent = "Something went wrong. Please call (555) 000-0000.";
+      status.textContent = "Something went wrong. Please call 706-525-1881.";
     });
 }
 
@@ -202,5 +202,5 @@ function openQuoteEmail(status, sendTo, formData) {
     `mailto:${sendTo}?subject=${encodeURIComponent(subject)}` +
     `&body=${encodeURIComponent(body)}`;
   status.textContent =
-    "Opening your email app. Press send to finish, or call (555) 000-0000.";
+    "Opening your email app. Press send to finish, or call 706-525-1881.";
 }
