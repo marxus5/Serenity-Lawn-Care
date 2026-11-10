@@ -135,7 +135,7 @@ function updateCopyrightYear() {
   }
 }
 
-// Send quote requests to the optional form endpoint or the visitor's email app.
+// Send quote requests to the site's server-side email endpoint.
 function initializeQuoteForm() {
   const form = document.getElementById("form");
   const status = document.getElementById("status");
@@ -143,9 +143,6 @@ function initializeQuoteForm() {
   if (!(form instanceof HTMLFormElement) || !status) {
     return;
   }
-
-  const sendTo = "hello@example.com"; // Replace with the email that receives quote requests.
-  const endpoint = ""; // Optional Formspree URL; takes priority over the email fallback.
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -157,50 +154,41 @@ function initializeQuoteForm() {
       return;
     }
 
-    if (endpoint) {
-      sendQuoteRequest(form, status, endpoint, formData);
-      return;
-    }
-
-    openQuoteEmail(status, sendTo, formData);
+    sendQuoteRequest(form, status, formData);
   });
 }
 
-function sendQuoteRequest(form, status, endpoint, formData) {
+function sendQuoteRequest(form, status, formData) {
+  const submitButton = form.querySelector('button[type="submit"]');
   status.textContent = "Sending...";
 
-  fetch(endpoint, {
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+
+  fetch("/api/quote", {
     method: "POST",
-    body: formData,
-    headers: { Accept: "application/json" }
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(Object.fromEntries(formData.entries()))
   })
     .then(function (response) {
       if (!response.ok) {
-        throw new Error(`Quote request failed with status ${response.status}.`);
+        throw new Error(`Quote request failed with status ${response.status}`);
       }
 
       form.reset();
       status.textContent = "Thanks! We will contact you soon.";
     })
-    .catch(function () {
+    .catch(function (error) {
+      console.error("Could not send quote request:", error);
       status.textContent = "Something went wrong. Please call 706-525-1881.";
+    })
+    .finally(function () {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
     });
-}
-
-function openQuoteEmail(status, sendTo, formData) {
-  const name = String(formData.get("name") || "");
-  const body = [
-    `Name: ${name}`,
-    `Phone: ${formData.get("phone") || ""}`,
-    `Email: ${formData.get("email") || ""}`,
-    "",
-    String(formData.get("message") || "")
-  ].join("\n");
-  const subject = `Free quote request from ${name}`;
-
-  window.location.href =
-    `mailto:${sendTo}?subject=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}`;
-  status.textContent =
-    "Opening your email app. Press send to finish, or call 706-525-1881.";
 }

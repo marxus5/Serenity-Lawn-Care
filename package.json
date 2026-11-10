@@ -1,0 +1,10 @@
+{
+  "name": "serenity-lawn-care",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "nodemailer": "^10.5.0"
+  }
+}
