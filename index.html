@@ -21,8 +21,8 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Do you offer free lawn care and landscaping quotes in North Georgia?","acceptedAnswer":{"@type":"Answer","text":"Yes. Call or send the form and we will get back to you with a free, no-obligation quote."}},
-{"@type":"Question","name":"What areas do you serve?","acceptedAnswer":{"@type":"Answer","text":"We serve Dahlonega, Cleveland, Dawsonville, Cumming and Gainesville, Georgia."}},
+{"@type":"Question","name":"Do you offer free lawn care and landscaping quotes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Call or send the form and we will get back to you with a free, no-obligation quote."}},
+{"@type":"Question","name":"What areas do you serve?","acceptedAnswer":{"@type":"Answer","text":"We serve Dahlonega, Cleveland, Dawsonville, Cumming and Gainesville, Georgia. Contact us if you are not sure your property is covered."}},
 {"@type":"Question","name":"Can you handle one-time jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. We take one-time cleanups and projects as well as weekly and monthly lawn care."}}]}
 </script>
 <link rel="stylesheet" href="styles.css">
@@ -33,7 +33,7 @@
 <header class="top">
   <a class="brand" href="#top" aria-label="Serenity Lawn Care home"><img src="images/SERENITY%20LAWN%20CARE%20LOGO.png" alt="" width="52" height="52"><span class="brand-copy"><span class="brand-title">Serenity</span><span class="brand-tagline">Lawn Care</span></span></a>
   <nav id="nav" aria-label="Main">
-    <a href="#top">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#work">Gallery &amp; reviews</a>
+    <a href="#top">Home</a><a href="#about">About</a><a href="/services">Services</a><a href="#work">Gallery &amp; reviews</a>
   </nav>
   <a class="btn call" href="#quote">Get a quote</a>
   <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -53,7 +53,7 @@
 <section class="sec about-section" id="about" aria-labelledby="home-about-title">
   <h2 id="home-about-title">About Serenity Lawn Care</h2>
   <div class="about-grid">
-    <figure class="svc-img"><div class="frame"><div class="ph" role="img" aria-label="Photo placeholder for Serenity Lawn Care"></div></div></figure>
+    <figure class="svc-img"><div class="frame"><img src="images/blowing-leaves-image-1.jpg" alt="Lawn care and landscaping in Cumming, GA" width="600" height="600" loading="lazy"></div></figure>
     <ul class="about-highlights" aria-label="Company highlights">
       <li>4-time winner of Best of Lumpkin Landscaping Company</li>
       <li>Licensed and insured</li>
@@ -81,16 +81,16 @@
         <li>Dry Creek Beds</li>
       </ul>
     </div>
-    <!-- TODO: replace the .ph div with <img src="images/services.jpg" alt="Lawn care and landscaping in Cumming, GA" width="800" height="600" loading="lazy"> -->
-    <figure class="svc-img"><div class="frame"><div class="ph" role="img" aria-label="Photo placeholder"></div></div></figure>
+
+    <figure class="svc-img"><div class="frame"><img src="images/lawn-care-image-1.jpg" alt="Lawn care and landscaping in Cumming, GA" width="600" height="600" loading="lazy"></div></figure>
   </div>
   <p class="slogan">&ldquo;If it&rsquo;s in your yard, we do it!&rdquo;</p>
+  <p class="section-action"><a class="btn big" href="/services">View all services</a></p>
 </section>
 
-<section class="sec dark" id="work">
+<!-- <section class="sec dark" id="work">
   <h2>Recent jobs in North Georgia</h2>
   <p class="lead">A look at yards we have cared for.</p>
-  <!-- TODO: replace each .ph div with <img src="images/job-1.jpg" alt="..." width="800" height="600" loading="lazy"> -->
   <div class="gallery">
     <figure><div class="ph p1" role="img" aria-label="Photo placeholder"></div><figcaption>Full lawn cleanup and fresh mulch</figcaption></figure>
     <figure><div class="ph p2" role="img" aria-label="Photo placeholder"></div><figcaption>Overgrown lot restored</figcaption></figure>
@@ -99,17 +99,16 @@
     <figure><div class="ph p5" role="img" aria-label="Photo placeholder"></div><figcaption>Landscape bed redesign</figcaption></figure>
     <figure><div class="ph p6" role="img" aria-label="Photo placeholder"></div><figcaption>Weekly mowing, same crew every time</figcaption></figure>
   </div>
-</section>
+</section> -->
 
-<section class="sec" id="reviews">
+<!-- <section class="sec" id="reviews">
   <h2>What customers say</h2>
-  <!-- TODO: replace sample reviews with real ones (with permission) -->
   <div class="reviews">
     <blockquote><p>Sample review: replace with a real customer quote about the work and the crew.</p><footer>Customer name, Cumming<span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></footer></blockquote>
     <blockquote><p>Sample review: mention what job was done and how it turned out.</p><footer>Customer name, Cumming<span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></footer></blockquote>
     <blockquote><p>Sample review: mention timing, price or communication.</p><footer>Customer name, Cumming<span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></footer></blockquote>
   </div>
-</section>
+</section> -->
 
 <section class="sec band" id="faq">
   <h2>Common questions</h2>
@@ -125,14 +124,14 @@
       <p class="lead">Call <a href="tel:+17065251881">706-525-1881</a> or send the form. We reply fast.</p>
       <div class="proof">
         <!-- TODO: replace the rating count and confirm every item below is true for the business -->
-        <p class="rating"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span>5.0 average from [number] reviews</span></p>
+        <!-- <p class="rating"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span>5.0 average from [number] reviews</span></p> -->
         <ul class="trust">
           <li>Free, no-obligation quotes</li>
           <li>Based in Cumming, GA</li>
           <li>Licensed and insured</li>
           <li>Fast replies by call or text</li>
         </ul>
-        <blockquote class="mini"><p>Sample review: replace with a real customer quote about how easy it was to get a quote and book.</p><footer>Customer name, Cumming<span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></footer></blockquote>
+        <!-- <blockquote class="mini"><p>Sample review: replace with a real customer quote about how easy it was to get a quote and book.</p><footer>Customer name, Cumming<span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></footer></blockquote> -->
       </div>
     </div>
     <form id="form">
