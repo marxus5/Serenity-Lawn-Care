@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const MAX_LENGTHS = {
   name: 100,
@@ -64,11 +64,11 @@ module.exports = async function handler(request, response) {
     return response.status(400).json({ error: "Please provide a valid email address." });
   }
 
-  const sender = process.env.GOOGLE_WORKSPACE_EMAIL;
-  const appPassword = process.env.GOOGLE_WORKSPACE_APP_PASSWORD;
+  const apiKey = process.env.RESEND_API_KEY;
+  const sender = process.env.RESEND_FROM_EMAIL;
   const recipient = process.env.QUOTE_REQUEST_TO;
 
-  if (!sender || !appPassword || !recipient) {
+  if (!apiKey || !sender || !recipient) {
     console.error("Quote email is not configured: required environment variables are missing.");
     return response.status(503).json({ error: "Quote email is not configured." });
   }
@@ -93,24 +93,20 @@ module.exports = async function handler(request, response) {
   ].join("");
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: sender,
-        pass: appPassword.replace(/\s/g, "")
-      }
-    });
-
-    await transporter.sendMail({
-      from: { name: "Serenity Lawn Care", address: sender },
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: sender,
       to: recipient,
       replyTo: email || undefined,
       subject: "New Serenity Lawn Care quote request",
       text,
       html
     });
+
+    if (error) {
+      console.error("Quote email delivery failed:", error.name || "Resend API error");
+      return response.status(502).json({ error: "Could not send the quote request." });
+    }
   } catch (error) {
     console.error("Quote email delivery failed:", error.code || error.name || "Unknown error");
     return response.status(502).json({ error: "Could not send the quote request." });
